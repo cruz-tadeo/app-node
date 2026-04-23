@@ -22,9 +22,8 @@ app.use(express.json());
 // CONFIGURACIÓN DE BD
 // ============================================================================
 const dbConfig = {
-  ...(process.env.CLOUD_SQL_CONNECTION_NAME
-    ? { socketPath: `/cloudsql/${process.env.CLOUD_SQL_CONNECTION_NAME}` }
-    : { host: process.env.DB_HOST || '127.0.0.1', port: parseInt(process.env.DB_PORT || 3306) }),
+  host: process.env.DB_HOST || '127.0.0.1',
+  port: parseInt(process.env.DB_PORT || 3306),
   user: process.env.DB_USER || 'appuser',
   password: process.env.DB_PASSWORD || 'appuserPassword123!',
   database: process.env.DB_NAME || 'app_db',
