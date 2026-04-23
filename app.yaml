@@ -1,0 +1,29 @@
+# Configuración para desplegar en Google Cloud Run o App Engine
+
+runtime: nodejs22
+
+env: standard
+
+entrypoint: node server.js
+
+env_variables:
+  DB_USER: "cruz-dev"
+  DB_PASSWORD: "tuPassword123!"
+  DB_NAME: "app_db"
+  NODE_ENV: "production"
+  CLOUD_SQL_CONNECTION_NAME: "project-8f72949f-fe65-415a-a73:us-central1:admin-pruebas"
+
+beta_settings:
+  cloud_sql_instances: "project-8f72949f-fe65-415a-a73:us-central1:admin-pruebas"
+
+instance_class: F1
+
+automatic_scaling:
+  min_instances: 1
+  max_instances: 10
+
+# Para Cloud Run, usa este archivo en su lugar:
+# gcloud run deploy mi-app --source . --platform managed --region us-central1
+
+# Para App Engine, usa:
+# gcloud app deploy app.yaml
