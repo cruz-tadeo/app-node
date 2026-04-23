@@ -2,19 +2,19 @@
 steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-west1-docker.pkg.dev/project-8f72949f-fe65-415a-a73/node-app/app', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/project-8f72949f-fe65-415a-a73/node-app/app', '.']
 
   # Push the container image to Docker Hub
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-west1-docker.pkg.dev/project-8f72949f-fe65-415a-a73/node-app/app']
+    args: ['push', 'us-central1-docker.pkg.dev/project-8f72949f-fe65-415a-a73/node-app/app']
 
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
-    args: ['run', 'deploy', 'app-node', '--image', 'us-west1-docker.pkg.dev/project-8f72949f-fe65-415a-a73/node-app/app', '--region', 'us-west1', '--platform', 'managed', '--port', '3000', '--allow-unauthenticated', '--set-env-vars', 'DB_HOST=$_DB_HOST,DB_PORT=$_DB_PORT,DB_USER=$_DB_USER,DB_PASSWORD=$_DB_PASSWORD']
+    args: ['run', 'deploy', 'app-node', '--image', 'us-central1-docker.pkg.dev/project-8f72949f-fe65-415a-a73/node-app/app', '--region', 'us-west1', '--platform', 'managed', '--port', '3000', '--allow-unauthenticated', '--set-env-vars', 'DB_HOST=$_DB_HOST,DB_PORT=$_DB_PORT,DB_USER=$_DB_USER,DB_PASSWORD=$_DB_PASSWORD']
 
 images:
-  - us-west1-docker.pkg.dev/project-8f72949f-fe65-415a-a73/node-app/app:latest
+  - us-central1-docker.pkg.dev/project-8f72949f-fe65-415a-a73/node-app/app:latest
 
 options:
   logging: CLOUD_LOGGING_ONLY
