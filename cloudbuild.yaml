@@ -15,3 +15,6 @@ steps:
 
 images:
   - us-west1-docker.pkg.dev/project-8f72949f-fe65-415a-a73/node-app/app:latest
+
+options:
+  logging: CLOUD_LOGGING_ONLY
